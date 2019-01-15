@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 全局setting配置, 根据需要添加 -->
+    <typeAliases>
+        <!-- 批量扫描设置别名 -->
+        <package name="com.cdc.pojo"/>
+    </typeAliases>
+
+    <!-- 配置Mapper
+         备注: 由于使用Spring整合mybatis的整合包进行mapper扫描, 这里不需要配置了
+         必须遵循: mapper.xml 和 mapper.java 文件同名且在同意目录下
+         IDEA会抛弃掉包中的xml文件 所以需要在pom文件中的build标签中添加resources添加忽略
+         -->
+
+        <!-- 引入 pageHelper插件 -->
+        <plugins>
+            <plugin interceptor="com.github.pagehelper.PageInterceptor">
+                <!--reasonable：分页合理化参数，默认值为false。
+                    当该参数设置为 true 时，pageNum<=0 时会查询第一页，
+                    pageNum>pages（超过总数时），会查询最后一页。
+                    默认false 时，直接根据参数进行查询。-->
+                <property name="reasonable" value="true"/>
+            </plugin>
+        </plugins>
+
+</configuration>

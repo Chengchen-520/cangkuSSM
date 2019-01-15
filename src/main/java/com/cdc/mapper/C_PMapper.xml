@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cdc.mapper.C_PMapper" >
+  <resultMap id="cpPojo" type="com.cdc.pojo.C_P">
+    <result property="userName" column="user_name"/>
+    <result property="cargoName" column="cargo_name"/>
+    <result property="operation" column="operation"/>
+    <result property="number" column="number"/>
+  </resultMap>
+  <select id="queryByName" parameterType="java.lang.String" resultMap="cpPojo">
+    SELECT * FROM c_p WHERE user_name=#{userName}
+  </select>
+  <select id="queryAll" resultMap="cpPojo">
+    SELECT * FROM c_p
+  </select>
+  <delete id="deletePerson" parameterType="java.lang.String">
+    DELETE FROM c_p WHERE user_name=#{personName}
+  </delete>
+  <delete id="deleteCp" parameterType="com.cdc.pojo.C_P">
+    DELETE FROM c_p WHERE user_name=#{userName} AND cargo_name=#{cargoName} AND operation=#{operation} AND number=#{number}
+  </delete>
+  <insert id="insertCp" parameterType="com.cdc.pojo.C_P">
+    INSERT INTO c_p(user_name,cargo_name,operation,number) VALUES (#{userName},#{cargoName},#{operation},#{number})
+  </insert>
+</mapper>

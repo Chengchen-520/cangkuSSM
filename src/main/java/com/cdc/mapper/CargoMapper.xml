@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cdc.mapper.CargoMapper" >
+  <select id="queryForType" parameterType="com.cdc.pojo.Cargo">
+    SELECT * FROM cargo WHERE type='%${type}%'
+  </select>
+  <select id="queryForName" parameterType="com.cdc.pojo.Cargo">
+    SELECT * FROM  cargo WHERE name='%${name}%'
+  </select>
+  <select id="queryAll" resultType="com.cdc.pojo.Cargo">
+    SELECT  * FROM  cargo
+  </select>
+  <insert id="insertCargo" parameterType="com.cdc.pojo.Cargo">
+    INSERT INTO cargo(name,num,type) VALUES (#{name},#{num},#{type})
+  </insert>
+  <update id="updateCargo" parameterType="com.cdc.pojo.Cargo">
+    UPDATE  cargo SET num=#{num},type=#{type}
+    WHERE name=#{name}
+  </update>
+  <delete id="deleteCargo" parameterType="com.cdc.pojo.Cargo">
+    DELETE FROM cargo WHERE name=#{name}
+  </delete>
+  <select id="queryCargo" resultType="com.cdc.pojo.Cargo">
+   	  select * from cargo where name=#{name}
+  </select>
+  <select id="queryCargoLike1" resultType="com.cdc.pojo.Cargo">
+      select * from cargo where binary name LIKE UPPER(CONCAT('%',#{like},'%')) OR LOWER(CONCAT('%',#{like},'%'))
+  </select>
+  <select id="queryCargoLike2" resultType="com.cdc.pojo.Cargo">
+      select * from cargo where binary type LIKE UPPER(CONCAT('%',#{like},'%')) OR LOWER(CONCAT('%',#{like},'%'))
+  </select>
+</mapper>
