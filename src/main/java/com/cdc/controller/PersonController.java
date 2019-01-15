@@ -33,7 +33,7 @@ public class PersonController {
         String ClientCode = request.getParameter("codetext");
         if (ClientCode.equalsIgnoreCase(ServiceCode)) {
             if(person==null){
-                model.addObject("loginMessage", "您输入的用户名或密码错误!");
+                model.addObject("loginMessage", "您输入的用户名或密码错误--!");
                 model.setViewName("forward:/index.jsp");
             }else if(person.getIdentity().equals("老板")){
                 request.getSession().setAttribute("username",person.getName());
